@@ -7,7 +7,13 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import Purchases from 'react-native-purchases';
+import { Platform } from 'react-native';
+import { Alert } from 'react-native';
 
+const EXPO_PUBLIC_RC_IOS='';
+
+Purchases.setLogLevel(Purchases.LOG_LEVEL_VERBOSE);
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -38,6 +44,43 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+// Configure RevenueCat
+
+ useEffect( () => {
+ 
+  if (Platform.OS === 'ios') {
+    if (!process.env.EXPO_PUBLIC_RC_IOS) {
+      Alert.alert("Error configuring RC","iOS API key not provided")
+    }
+    else {
+      Purchases.configure({apiKey: EXPO_PUBLIC_RC_IOS});
+    }
+    Purchases.configure({apiKey: EXPO_PUBLIC_RC_IOS});
+ } else if (Platform.OS === 'android') {
+  Purchases.configure({apiKey: process.env.EXPO_PUBLIC_RC_IOS});
+}
+
+// test fetching products
+Purchases.getOfferings().then(console.log);
+console.log(EXPO_PUBLIC_RC_IOS)
+
+try {
+  const offerings = Purchases.getOfferings().then(console.log);
+  if (offerings.current !== null) {  
+	  // Display current offering with offerings.current
+  }
+} catch (e) {
+  console.log("Not working")
+}
+
+ }, [])
+
+ Purchases.setLogLevel(Purchases.LOG_LEVEL.DEBUG);
+Purchases.configure({
+    apiKey: "appl_zXNpabXZgglKeFDxGDVlFVVzUav",
+    appUserID: "appea31f7e20c",
+});
+
   if (!loaded) {
     return null;
   }
@@ -47,6 +90,8 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+
+  
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
