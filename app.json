@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Paywall",
-    "slug": "Paywall",
+    "name": "paywall",
+    "slug": "paywall",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icob.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.teopopescu.Paywall"
+      "bundleIdentifier": "com.teopopescu.paywall"
     },
     "android": {
       "adaptiveIcon": {

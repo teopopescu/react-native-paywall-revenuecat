@@ -11,7 +11,7 @@ import Purchases from 'react-native-purchases';
 import { Platform } from 'react-native';
 import { Alert } from 'react-native';
 
-const EXPO_PUBLIC_RC_IOS='';
+const EXPO_PUBLIC_RC_IOS='appl_zXNpabXZgglKeFDxGDVlFVVzUav';
 
 Purchases.setLogLevel(Purchases.LOG_LEVEL_VERBOSE);
 export {
